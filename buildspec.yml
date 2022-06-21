@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: openjdk8  
+    commands:
+      - echo Nada para executar em install phase...
+  pre_build:
+    commands:
+      - echo Nada para executar em pre_build phase...
+  build:
+    commands:
+      - echo Build iniciado em `date`
+      - mvn install
+  post_build:
+    commands:
+      - echo Build finalizado em `date`
+artifacts:
+  files:
+    - 'target/*.jar'
