@@ -6,15 +6,15 @@ phases:
       - echo Nada para executar em install phase...
   pre_build:
     commands:
-      - docker login -u AWS -p $(aws ecr-public get-login-password --region $AWS_REGION) $IMAGE_URL
+      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/c9y1i6i4
   build:
     commands:
       - mvn install
       - docker build -t hello-app .
-      - docker tag hello-app:latest $IMAGE_URL:$IMAGE_TAG
+      - docker tag hello-app:latest public.ecr.aws/c9y1i6i4/hello-app:latest
   post_build:
     commands:
-      - docker push $IMAGE_URL:$IMAGE_TAG
+      - docker push public.ecr.aws/c9y1i6i4/hello-app:latest
 artifacts:
   files:
     - 'target/*.jar'
