@@ -6,6 +6,7 @@ phases:
       - echo Nada para executar em install phase...
   pre_build:
     commands:
+      - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_TOKEN
       - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/c9y1i6i4
   build:
     commands:
