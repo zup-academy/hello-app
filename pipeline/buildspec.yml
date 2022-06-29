@@ -14,7 +14,7 @@ phases:
       - docker tag hello-app:latest public.ecr.aws/c9y1i6i4/hello-app:latest
   post_build:
     commands:
-      - docker push hello-app:latest
+      - docker push public.ecr.aws/c9y1i6i4/hello-app:latest
 artifacts:
   files:
     - 'target/*.jar'
