@@ -11,6 +11,7 @@ phases:
     commands:
       - mvn install
       - docker build -t hello-app .
+      - docker save hello-app | gzip > hello-app.tar.gz
       - docker tag hello-app:latest public.ecr.aws/c9y1i6i4/hello-app:latest
   post_build:
     commands:
@@ -20,3 +21,4 @@ artifacts:
     - 'target/spring-boot-complete-0.0.1-SNAPSHOT.jar'
     - 'appspec.yml'
     - 'scripts/**/*'
+    - 'hello-app.tar.gz'

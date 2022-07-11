@@ -1,22 +1,22 @@
 version: 0.0
 os: linux
 files:
-  - source: target/spring-boot-complete-0.0.1-SNAPSHOT.jar
-    destination: /usr/share/tomcat/webapps/
+  - source: target/hello-app.tar.gz
+    destination: /tmp
 hooks:
-  BeforeInstall:
-    - location: scripts/before_install.sh
-      timeout: 300
-      runas: root
-  AfterInstall:
-    - location: scripts/after_install.sh
-      timeout: 300
-      runas: root
-  ApplicationStart:
-    - location: scripts/start_server.sh
-      timeout: 300
-      runas: root
   ApplicationStop:
-    - location: scripts/stop_server.sh
-      timeout: 300
-      runas: root
+    - location: scripts/stop_container.sh
+      timeout: 20
+      runas: ec2-user
+  AfterInstall:
+    - location: scripts/load_image.sh
+      timeout: 10
+      runas: ec2-user
+  ApplicationStart:
+    - location: scripts/start_container.sh
+      timeout: 10
+      runas: ec2-user
+  ValidateService:
+    - location: scripts/check_container.sh
+      timeout: 10
+      runas: ec2-user
