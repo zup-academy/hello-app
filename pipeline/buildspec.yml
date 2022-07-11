@@ -17,4 +17,6 @@ phases:
       - docker push public.ecr.aws/c9y1i6i4/hello-app:latest
 artifacts:
   files:
-    - 'target/*.jar'
+    - 'target/spring-boot-complete-0.0.1-SNAPSHOT.jar'
+    - 'appspec.yml'
+    - 'scripts/**/*'
