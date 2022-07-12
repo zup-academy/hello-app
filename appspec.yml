@@ -1,7 +1,7 @@
 version: 0.0
 os: linux
 files:
-  - source: hello-app.tar.gz
+  - source: ./hello-app.tar.gz
     destination: /tmp
 hooks:
   ApplicationStop:
